@@ -1,0 +1,122 @@
+\usepackage{mdframed} 
+\usepackage{tikz}
+\usepackage{csquotes}
+\usepackage{xstring}
+
+% Source for the quoting symbols : 
+%    http://tex.stackexchange.com/questions/75976/which-font-for-pretty-big-quotes#75980
+\makeatletter
+% Inline mode
+	\renewcommand\quote{\@ifstar{\@quoteStar}{\@quoteNoStar}}
+	\newcommand\@quoteStar[2][]{\textquote*[#1]{\textit{#2}}}
+	\newcommand\@quoteNoStar[2][]{\textquote[#1]{\textit{#2}}}
+
+% Default settings for quoting blocks
+	\newlength{\bigQuoteBorderWidth}
+	\setlength{\bigQuoteBorderWidth}{0pt}
+	\newlength{\bigQuoteInnerMargin}
+	\setlength{\bigQuoteInnerMargin}{3pt}
+	\newlength{\bigQuoteOuterMarginHorizontal}
+	\setlength{\bigQuoteOuterMarginHorizontal}{1.5em}
+
+
+% Restore the default settings for big quotings
+	\newcommand{\quoteStyleDefault}{
+		\definecolor{bigQuoteColorText}{named}{black}
+		\definecolor{bigQuoteColorSymbol}{named}{DarkSeaGreen3}
+		\definecolor{bigQuoteColorBack}{named}{Honeydew2}
+
+		\setlength{\bigQuoteBorderWidth}{0pt}
+		\setlength{\bigQuoteInnerMargin}{3pt}
+		\setlength{\bigQuoteOuterMarginHorizontal}{1.5em}
+	}
+
+% Frame for quoting blocks
+	\mdfdefinestyle{quoteFrameStyle}{
+		fontcolor         = bigQuoteColorText,
+		backgroundcolor   = bigQuoteColorBack,
+		linewidth         = \bigQuoteBorderWidth,
+		leftmargin        = \bigQuoteOuterMarginHorizontal,
+		rightmargin       = \bigQuoteOuterMarginHorizontal,
+		innerleftmargin   = \bigQuoteInnerMargin,
+		innerrightmargin  = \bigQuoteInnerMargin,
+		innertopmargin    = \bigQuoteInnerMargin,
+		innerbottommargin = \bigQuoteInnerMargin,
+	}
+
+% The big quotes
+	\IfFileExists{libertine-type1.sty}{
+		\newcommand*\bigQuotefont{% Selects Libertine for quote font
+			\fontfamily{LinuxLibertineO-LF}\fontsize{32}{32}\selectfont%
+		}       
+	}{
+		\newcommand*\bigQuotefont{% Selects Libertine for quote font
+			\fontfamily{fxl}\fontsize{32}{32}\selectfont%
+		}
+	}
+
+	\newcommand*{\bigQuoteOpening}{%
+		\tikz[
+			remember picture,
+			overlay,
+			xshift=0.75em, % bigQuoteOuterMarginHorizontal - 0.75
+			yshift=-1.25em
+		]{\node (OQ) {\color{bigQuoteColorSymbol}\bigQuotefont\textbf{``}};}%
+		\kern0pt
+	}
+	\newcommand*{\bigQuoteClosing}{%
+		\tikz[
+			remember picture,
+			overlay,
+			xshift=1.1em,
+			yshift=-0.65em
+		]{\node (CQ) {\color{bigQuoteColorSymbol}\bigQuotefont\textbf{''}};}%
+		\kern0pt
+	}
+
+% Block mode
+	\pgfkeys{
+		/quote/.is family,
+		/quote,
+			author/.initial = {},
+			title/.initial  = {},
+			editor/.initial = {}
+	}
+
+	\newif\if@bigQuoteNoRefUsed
+
+	\newenvironment{Quote}[1][]{%
+% Management of the keys.
+		\pgfkeys{/quote, #1}%
+		\pgfkeysgetvalue{/quote/author}{\@author}%
+		\pgfkeysgetvalue{/quote/title}{\@title}%
+		\pgfkeysgetvalue{/quote/editor}{\@editor}%
+% Let's go !
+		\vspace{-0.3em}
+		\bigQuoteOpening
+		\begin{mdframed}[style=quoteFrameStyle]%
+		\quoteRefFormatBefore{\@author}{\@title}{\@editor}%
+	}{%
+		\quoteRefFormatAfter{\@author}{\@title}{\@editor}%
+		\bigQuoteClosing%
+		\end{mdframed}%
+		\medskip
+	}
+
+% 1  -->  Author
+% 2  -->  Title
+% 3  -->  Editor
+	\newcommand\quoteRefFormatBefore[3]{}
+% 1  -->  Author
+% 2  -->  Title
+% 3  -->  Editor
+	\newcommand\quoteRefFormatAfter[3]{{%
+		\footnotesize
+		\vspace{-0.5em}
+		\@bigQuoteNoRefUsedtrue
+		\IfStrEq{#1}{}{}{\@bigQuoteNoRefUsedfalse \par \hfill #1}%
+		\IfStrEq{#2}{}{}{\@bigQuoteNoRefUsedfalse \par \hfill \quote*{#2}}%
+		\IfStrEq{#3}{}{}{\@bigQuoteNoRefUsedfalse \par \hfill {\scriptsize#3}}%
+		\if@bigQuoteNoRefUsed{\hfill}\fi%
+	}}
+\makeatother

@@ -1,0 +1,114 @@
+====
+TODO
+====
+
+# mogrify -trim *.png
+# mogrify -mattecolor white -frame 10x10 *.png
+# mogrify -bordercolor none -border 10 *.png
+
+
+> ----------------- <
+
+CODE::
+    revoir la couleur noir , ajouter du alpha pour obtenir un truc bien diéférentiable entre belu foncé et noir !!!!
+
+    motof pour les daltoniens
+
+    version noir et blanc numéroté via
+        ---> J1 pour joueur ou jeton 1
+        ---> B1 pour base 1
+
+
+> ----------------- <
+
+THÉORIE avant optimalité - tests concrets ::
+    pour 5 bases, comparer nombre de coups des alogs présenté (faisable car ebviron 65000 vconfigurations)
+    config construite via la liste L(Config) défini pour la méthode "on avance au mieux"
+
+    pour tests, on ajoute des méthodes bis améliorés ou non ? mais non prouvées
+        ---> sélection mais en se déplacçant où l'on veut mais au plus prêt possible au moment où l'on choisir
+        ---> bubble : barrière mouvante = dès qu'une ou plusieurs bases voisins se remplissent, elles définissent un nouveau mur
+        ---> marche aléatoie inetelligente qui ne touche pas aux jeton bien placés sauf si deux jetson bien placés : indiquer qu'ici c'est un programme et non un algorithme !!!
+
+
+> ----------------- <
+
+THÉORIE::
+    Problème de la recherche d'une éventuelle solution optimale. Faisable ?
+    pour n=5, on a 63000 config donc on crée un prog qui pour chaque config trouve brutalement la résolution la plus rapide
+        ---> pour cela, on part de la position gagnante, puis onc cherche les config à un déplacement qui s'en désuisent
+        ---> ensuite on fait de meêl avec ce nouvel ensemble en ne gradant que les nouvelles configs qui permettent de gagner en deux coups
+        ---> ... etc
+
+    Obtient-on un truc générale humainement intelligible ????
+
+
+> ----------------- <
+
+CODE::
+    version GUI via PyQT pour pratiquer !!!
+
+
+> ----------------- <
+
+CODE::
+    MOVIE::
+    # http://robotics.usc.edu/~ampereir/wordpress/?p=702
+    #
+    # cat *.png | ffmpeg -f image2pipe  -framerate 1/2  -i - output.mp4
+    #
+    #
+    # ffmpeg -framerate 1/5 -i %03d.png -c:v libx264 -vf fps=25 -pix_fmt yuv420p out.mp4
+
+
+> ----------------- <
+
+versions cli puis gui !!!!
+
+
+> ----------------- <
+
+Maldresse - Sélection ???
+
+1 0 - 1 4 - 3 3 - 4 2 - X 2
+1 0 - 1 4 - 3 3 - 4 X - 2 2
+1 0 - 1 4 - X 3 - 4 3 - 2 2   <--- On devrait s'arrêter ici !
+1 0 - X 4 - 1 3 - 4 3 - 2 2
+
+
+
+[0.X]  [2.1]  [1.2]
+[0.1]  [2.X]  [1.2]
+[0.1]  [2.1]  [X.2]
+[0.1]  [X.1]  [2.2]
+[X.1]  [0.1]  [2.2]    <--- maladroit
+[0.1]  [X.1]  [2.2]    <--- maladroit
+[0.X]  [1.1]  [2.2]
+
+
+bubble_algo  -  méthode non optimale voici un exemple
+
+gamebord = X022113344   <-- les deux 4 et 3 à la fin souvent bougés pour rien
+
+Solving [X, 0, 2, 2, 1, 1, 3, 3, 4, 4]
+   ---> [2, 0, X, 2, 1, 1, 3, 3, 4, 4]
+   ---> [2, 0, 1, 2, X, 1, 3, 3, 4, 4]
+   ---> [2, 0, 1, 2, 3, 1, X, 3, 4, 4]
+   ---> [2, 0, 1, 2, 3, 1, 4, 3, X, 4]
+   ---> [2, 0, 1, 2, 3, 1, X, 3, 4, 4]
+   ---> [2, 0, 1, 2, X, 1, 3, 3, 4, 4]
+   ---> [2, 0, 1, X, 2, 1, 3, 3, 4, 4]
+   ---> [X, 0, 1, 2, 2, 1, 3, 3, 4, 4]
+   ---> [1, 0, X, 2, 2, 1, 3, 3, 4, 4]
+   ---> [1, 0, 1, 2, 2, X, 3, 3, 4, 4]
+   ---> [1, 0, 1, 2, 2, 3, X, 3, 4, 4]    INUTILE !
+   ---> [1, 0, 1, 2, 2, 3, 4, 3, X, 4]    INUTILE !
+   ---> [1, 0, 1, 2, 2, 3, X, 3, 4, 4]    INUTILE !
+   ---> [1, 0, 1, 2, 2, X, 3, 3, 4, 4]    INUTILE !
+   ---> [1, 0, 1, X, 2, 2, 3, 3, 4, 4]
+   ---> [X, 0, 1, 1, 2, 2, 3, 3, 4, 4]
+
+Solution optimale (à démontrer)
+    ----> ne se déplacer que là il y a du nouveau à faire !!!
+    ----> bien entendu s'autoirse rà tourner (déplacement modulo la longuer de la liste)
+    ---->   RÉSUMÉ : choisir le mouvement qui va faire diminuer le nombre associé et si pas possivble directement aller à la position la plus proche permettant de faire diminuer le nombre

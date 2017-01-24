@@ -1,0 +1,123 @@
+%%% PACKAGES USED
+
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{ucs}
+\usepackage[greek, french]{babel}
+
+\usepackage[
+	lmargin=1.8cm, rmargin=1.8cm, 
+	tmargin=1.8cm, bmargin=1.8cm
+]{geometry}
+
+\usepackage[
+	colorlinks=true,
+	linkcolor=black,
+	urlcolor=black,
+	breaklinks=true
+]{hyperref}
+\hypersetup{breaklinks=true}
+
+\usepackage{titlesec}
+\usepackage[french]{varioref}
+
+\usepackage{multicol}
+
+\usepackage{xstring}
+\usepackage{pgfkeys}
+
+
+%%% GENERAL FORMATTINGS
+
+\titleformat{\part}[block]{\LARGE\bfseries\filcenter}{}{1em}{}
+
+\setlength{\parindent}{0pt}
+
+\newcommand{\switchcol}{\vfill \columnbreak}
+\setlength{\columnsep}{0.85cm}
+\setlength{\columnseprule}{2pt}
+\renewcommand{\columnseprulecolor}{\color{vruleMulticolColor}}
+
+
+%%% TITLE & LICENCE
+
+\makeatletter
+	\pgfkeys{
+		/addtitle/.is family,
+		/addtitle,
+			title/.initial      = {},
+			name/.initial       = {},
+			mail/.initial       = {},
+			version/.initial    = {},
+			addlicence/.initial = {no},
+			repo/.initial       = {},
+			repofolder/.initial = {}
+	}
+
+
+	\newenvironment{addtitle}[1]{
+		\pgfkeys{/addtitle, #1}
+		\pgfkeysgetvalue{/addtitle/title}{\@title}
+		\pgfkeysgetvalue{/addtitle/name}{\@name}
+		\pgfkeysgetvalue{/addtitle/mail}{\@mail}
+		\pgfkeysgetvalue{/addtitle/repo}{\@repo}
+		\pgfkeysgetvalue{/addtitle/repofolder}{\@repofolder}
+		\pgfkeysgetvalue{/addtitle/version}{\@version}
+		\pgfkeysgetvalue{/addtitle/addlicence}{\@addlicence}
+% Do we have a title ?
+		\IfStrEq{\@title}{}{}{\part*{\@title}}
+
+% Do we have a name and/or a mail ?	
+		\IfStrEq{\@name}{}{
+		% \@name is empty.
+			\IfStrEq{\@mail}{}{
+			% \@mail is empty.
+				\newcommand{\@nameAndMail}{}
+			}{
+			% \@mail is not empty.
+				\newcommand{\@nameAndMail}{\url{\@mail}}
+			}
+		}{
+		% \@name is not empty.
+			\IfStrEq{\@mail}{}{
+			% \@mail is empty.
+				\newcommand{\@nameAndMail}{\@name{}}
+			}{
+			% \@mail is not empty.
+				\newcommand{\@nameAndMail}{\@name{} : \url{\@mail}}
+			}
+		}
+		
+		\vspace{-0.5em}
+		\begin{center}
+			\@nameAndMail
+			
+			\IfStrEq{\@version}{}{}{
+				\vspace{0.2em}
+				{\small \bfseries \@version}
+			}
+		\end{center}
+		\vspace{1.45em}
+
+% Do we have a licence ?	
+		\IfStrEq{\@addlicence}{no}{}{
+			\begin{center}
+			{\fontsize{1.35em}{1em}\selectfont
+			\textbf{Mentions \og légales \fg}}
+			
+			\vspace{0.45em}
+			\doclicenseThis
+			\end{center}
+		}
+		
+% Do we have a repository ?	
+		\IfStrEq{\@repo}{}{}{
+			À l'adresse \url{\@repo}, vous trouverez le code source
+		    \LaTeX{} de ce document%
+			\IfStrEq{\@repofolder}{}{.}{
+				: voir le dossier 
+				\expandafter\path\expandafter{\@repofolder}.
+			}
+		}
+	}{}
+\makeatother

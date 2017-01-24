@@ -1,0 +1,86 @@
+% Sources :
+%    + http://forum.mathematex.net/latex-f6/lettrine-encadree-t11998.html#p116036
+
+%    + http://xpt.sourceforge.net/techdocs/language/latex/latex35-OrphanSpaceControl/single/
+%      Don't allow alone single lines at the end of a page
+%     via \clubpenalty=10000 .
+
+%    + http://chl.be/glmf/morningstar.tuxfamily.org/magazine/latex/al/03/article.html
+%      Bullets for items
+
+%    + http://forum.mathematex.net/latex-f6/mise-en-forme-des-notes-de-bas-de-page-t12172.html#p118105
+%      No parenthesis for the number in the text of the footnotes
+
+
+%%% PACKAGES USED
+
+\usepackage[figurename=Graphique]{caption}
+\usepackage{lettrine, mathtools}
+\usepackage{setspace}
+
+\usepackage{xifthen}
+
+\usepackage{siunitx}
+
+\usepackage{tikz}
+
+
+%%% FORMATTINGS
+
+\clubpenalty=10000
+
+\titleformat*{\section}{\center \huge \bf}
+\titleformat*{\subsection}{\center \large \bf}
+\newcommand{\specialSubSection}[1]{%
+    \subsection*{#1} \addcontentsline{toc}{subsection}{#1}
+}%
+
+\renewcommand{\thefootnote}{\roman{footnote}}
+\makeatletter
+    \def\@makefnmark{ %
+        \hbox{\@textsuperscript{\normalfont(\@thefnmark)}} %
+}
+\makeatother
+
+
+\newcommand{\oneBook}[1]{%
+    \focus{#1}%
+}%
+\newcommand{\oneAuthor}[2]{%
+    #1 \textsc{#2}%
+}%
+
+\newcommand{\focus}[1]{%
+    \emph{\og #1 \fg}%
+}%
+\newcommand*{\greekText}[1]{%
+    \foreignlanguage{greek}{#1}%
+}%
+
+\newcommand{\linkStyle}[1]{%
+    \textcolor{blue}{#1}%
+}%
+
+\newcommand{\mylink}[2][]{%
+    \hyperref[#2]{\linkStyle{%
+        \ifthenelse{\equal{#1}{}}{#2}{#1}%
+    }}%
+}%
+
+%%% MATH
+
+\newcommand{\VV}{\mathrm{V}}
+
+
+%%% LETTRINES
+
+\linespread{1.12}
+\newlength{\lrg}\newlength{\htr}\newlength{\prof}
+\settowidth{\lrg}{$\Delta\Delta\Delta$}
+\settoheight{\htr}{$\beta$}
+\settodepth{\prof}{$\eta$}
+\newcommand{\cadre}[1]{%
+    \vspace{0.2cm}
+    \lettrine[loversize=0.6,lraise=0.2,findent=0.5em,nindent=0em]{%
+        \framebox[\lrg]{#1\rule[-2.5\prof]{0pt}{3.2\htr}}}%
+}%

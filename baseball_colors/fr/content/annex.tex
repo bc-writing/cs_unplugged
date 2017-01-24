@@ -1,0 +1,104 @@
+On peut se demander combien de configurations de jeux sont possibles. Nous allons calculer ce nombre en cherchant directement une formule générale pour $n \geqslant 2$ bases. Dans ce cas nous avons au total $(2n - 1)$ jetons et $n$ \quote{couleurs} différentes.
+
+\begin{enumerate}
+	\item Tout d'abord, nous avons $n$ choix de bases où placer le trou.
+
+	\item Une fois le trou placé dans une base ${\cal B}_0$, nous avons $n$ configurations possibles pour cette base ${\cal B}_0$ car seule la \quote{couleur} du jeton ajouté importe.
+
+	\item Maintenant que la base ${\cal B}_0$ contient le trou et un jeton, que se passe-t-il pour les $(2n - 2)$ jetons restants et les $(n - 1)$ bases restantes ${\cal B}_1$ , ${\cal B}_2$ , \dots ,  ${\cal B}_{n - 1}$ ?
+	
+	\begin{enumerate}
+		\item Pour la base ${\cal B}_1$, nous devons choisir deux jetons parmi $(2n - 2)$ sans tenir compte de l'ordre du tirage. Ce nombre est noté $\binom{2n - 2}{2}$ ce qui se lit \quote{$2$ parmi $(2n - 2)$}. Nous pouvons ici le calculer directement.
+		
+		En effet, nous avons $(2n - 2)$ choix pour le premier jeton $p$, et ensuite $(2n - 3)$ pour le deuxième jeton $d$. Si l'on tient compte de l'ordre cela fait $(2n - 2)(2n - 3)$ choix possibles. Or tirer $p$ puis $d$, ou $d$ puis $p$ ne change rien pour la configuration, donc le nombre de choix possibles est $\dfrac{(2n - 2)(2n - 3)}{2}$.
+		
+		\item De façon analogue, nous avons ensuite $\dfrac{(2n - 4)(2n - 5)}{2}$ pour la base ${\cal B}_2$.
+		
+		\item \dots \textit{etc.}
+	\end{enumerate}
+\end{enumerate}
+
+Le nombre total $C(n)$ de configurations est donc 
+\footnote{
+	L'utilisation de points de suspension est un acte très critiquable mais il va nous permettre de faciliter la compréhension des formules manipulées.
+}:
+\begin{align*}
+	C(n)
+	  & = n
+	      \times n 
+	      \times \dfrac{(2n - 2)(2n - 3)}{2} 
+	      \times \dfrac{(2n - 4)(2n - 5)}{2} 
+	      \times \cdots 
+	      \times \dfrac{4 \times 3}{2}
+	      \times \dfrac{2 \times 1}{2}
+	\\
+	C(n)
+	  & = \dfrac{n^2 \times (2n - 2)!}{2^{n-1}}
+\end{align*}
+
+Dans la seconde formule, le $2^{n-1}$ vient de ce que l'on divise par $2$ uniquement pour les bases ${\cal B}_1$ , ${\cal B}_2$ , \dots{} , et  ${\cal B}_{n - 1}$.
+De plus, on utilise la factorielle d'un naturel non nul $k$ définie par $k! = 1 \times 2 \times 3 \times \cdots  \times k$.
+
+
+\medskip
+
+Ceci nous donne par exemple les valeurs suivantes (voir la remarque n°1 juste après).
+	
+
+\medskip
+
+\begin{itemize}
+	\item[\textbullet] $C(2) = 4$ ce qui est calculable directement en imaginant les configurations possibles avec deux bases.
+
+	\medskip
+
+	\item[\textbullet] $C(3) = 54$,
+	                   $C(4) = 1440$ et
+	                   $C(5) = 63\,000$.
+
+	\medskip
+
+	\item[\textbullet] $C(33) \approx 3,\!2 \times 10^{82}$ que l'on comparera à $10^{80}$ qui est une estimation du nombre d'atomes dans l'univers
+	\footnote{
+		Notons que si l'estimation du nombre d'atomes de l'univers est juste, alors il est tout simplement impossible \quote{d'écrire} tous les naturels de $1$ à $C(33)$ en associant chaque naturel à un seul atome de l'univers. Vertigineux !
+	}.
+\end{itemize}
+
+
+\paragraph{Remarque n°1 :} \hspace{-1em} les calculs ont été faits via le logiciel SageMath utilisable directement en ligne à l'adresse suivante \url{https://sagecell.sagemath.org}. Le code utilisé est le suivant.
+
+\bigskip
+
+\begin{myverb}
+def C(n):
+    return n**2 * factorial(2*n - 2) / 2**(n - 1)
+
+for k in range(2, 6):
+    print C(k)
+
+print C(33).n(10)
+
+\end{myverb}
+
+
+\medskip
+
+\paragraph{Remarque n°2 :} \hspace{-1em} un argument de symétrie montre facilement que $C(n)$ est pair. Ceci se vérifie aussi à l'aide de la formule $C(n) = \dfrac{n^2 \times (2n - 2)!}{2^{n-1}}$.
+
+
+\medskip
+
+En effet, nous avons :
+\begin{align*}
+	C(n)
+	  & = \dfrac{n^2 \times (2n - 2)!}{2^{n-1}}
+	\\
+	C(n)
+	  & = n^2 \times \dfrac{(2n - 2) \times (2n - 3) \times (2n - 4) \times (2n - 5) \times \cdots \times 4 \times 3 \times 2 \times 1}{2 \times 2 \times \cdots \times 2 \times 2}
+	\\
+	C(n)
+	  & = n^2 \times (n - 1) \times (2n - 3) \times (n - 2) \times (2n - 5) \times \cdots \times 2 \times 3 \times 1
+\end{align*}
+
+
+Comme $n$ ou $(n -1)$ est pair, nous retrouvons bien par le calcul que $C(n)$ est pair. 

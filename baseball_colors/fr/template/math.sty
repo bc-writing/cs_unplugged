@@ -1,0 +1,98 @@
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{dsfont}
+\usepackage{mathrsfs}
+\usepackage{yhmath}
+
+
+%%% OPERATORS
+
+\newcommand{\dd}{\mathop{}\mathopen{}\mathrm{d}}
+
+\renewcommand{\leq}{\leqslant}
+\renewcommand{\geq}{\geqslant}
+
+
+%%% NUMBERS
+
+\newcommand{\ii}{\mathrm{i}}
+\newcommand{\jj}{\mathrm{j}}
+\newcommand{\kk}{\mathrm{k}}
+\newcommand{\ee}{\mathrm{e}}
+
+
+%%% SETS
+
+\newcommand\nbSet[1]{
+\IfSubStr{,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,h,k,}{,#1,}{\mathds{#1}}{#1}
+}
+
+\newcommand\setPositive{\text{\bf{\tiny+}}}
+\newcommand\setNegative{\vphantom{\setPositive}-}
+\newcommand\setStar{\text{*}}
+
+
+\makeatletter
+	\newcommand\specialSet{\@ifstar{\@specialSetStared}{\@specialSetUnstared}}
+
+	\newcommand\@specialSetUnstared[2]{
+		\IfEqCase{#2}{
+			{s}{ #1^{\setStar} }
+			{n}{ #1^{\phantom{\setStar}}_{\setNegative} }
+			{p}{ #1^{\phantom{\setStar}}_{\setPositive} }
+			{sn}{ #1^{\setStar}_{\setNegative} }
+			{sp}{ #1^{\setStar}_{\setPositive} }
+		}
+	}
+
+	\newcommand\@specialSetStared[2]{
+		\IfEqCase{#2}{
+			{s}{ #1_{\neq 0} }
+			{n}{ #1_{\le 0} }
+			{p}{ #1_{\ge 0} }
+			{sn}{ #1_{< 0} }
+			{sp}{ #1_{> 0} }
+		}
+	}
+\makeatother
+
+\newcommand\emptySet{\ensuremath{\text{\scalebox{1.2}{$\varnothing$}}}}
+
+\newcommand\NN{\ensuremath{\nbSet{N}}}
+\newcommand\NNs{\ensuremath{\specialSet{\nbSet{N}}{s}}}
+
+\newcommand\ZZ{\ensuremath{\nbSet{Z}}}
+\newcommand\ZZp{\ensuremath{\specialSet{\nbSet{Z}}{p}}}
+\newcommand\ZZn{\ensuremath{\specialSet{\nbSet{Z}}{n}}}
+\newcommand\ZZs{\ensuremath{\specialSet{\nbSet{Z}}{s}}}
+\newcommand\ZZsp{\ensuremath{\specialSet{\nbSet{Z}}{sp}}}
+\newcommand\ZZsn{\ensuremath{\specialSet{\nbSet{Z}}{sn}}}
+
+\newcommand\DD{\ensuremath{\nbSet{D}}}
+\newcommand\DDp{\ensuremath{\specialSet{\nbSet{D}}{p}}}
+\newcommand\DDn{\ensuremath{\specialSet{\nbSet{D}}{n}}}
+\newcommand\DDs{\ensuremath{\specialSet{\nbSet{D}}{s}}}
+\newcommand\DDsp{\ensuremath{\specialSet{\nbSet{D}}{sp}}}
+\newcommand\DDsn{\ensuremath{\specialSet{\nbSet{D}}{sn}}}
+
+\newcommand\QQ{\ensuremath{\nbSet{Q}}}
+\newcommand\QQp{\ensuremath{\specialSet{\nbSet{Q}}{p}}}
+\newcommand\QQn{\ensuremath{\specialSet{\nbSet{Q}}{n}}}
+\newcommand\QQs{\ensuremath{\specialSet{\nbSet{Q}}{s}}}
+\newcommand\QQsp{\ensuremath{\specialSet{\nbSet{Q}}{sp}}}
+\newcommand\QQsn{\ensuremath{\specialSet{\nbSet{Q}}{sn}}}
+
+\newcommand\RR{\ensuremath{\nbSet{R}}}
+\newcommand\RRp{\ensuremath{\specialSet{\nbSet{R}}{p}}}
+\newcommand\RRn{\ensuremath{\specialSet{\nbSet{R}}{n}}}
+\newcommand\RRs{\ensuremath{\specialSet{\nbSet{R}}{s}}}
+\newcommand\RRsp{\ensuremath{\specialSet{\nbSet{R}}{sp}}}
+\newcommand\RRsn{\ensuremath{\specialSet{\nbSet{R}}{sn}}}
+
+\newcommand\CC{\ensuremath{\nbSet{C}}}
+\newcommand\CCs{\ensuremath{\specialSet{\nbSet{C}}{s}}}
+
+\newcommand\HH{\ensuremath{\nbSet{H}}}
+\newcommand\HHs{\ensuremath{\specialSet{\nbSet{H}}{s}}}
+

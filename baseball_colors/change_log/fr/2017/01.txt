@@ -1,0 +1,23 @@
+==========
+2017-01-24
+==========
+
+**Amélioration des codes du document "Baseball des couleurs":** les codes ¨python sont "propres" et donc publiables.
+
+
+**Mise en ligne sur ¨github :** le document est maintenant disponible à l'adresse cf::``https://github.com/bc-writing-game-solving/cs_unplugged``.
+
+
+
+==========
+2017-01-23
+==========
+
+**Amélioration du document "Baseball des couleurs":** les images ¨png sont toutes avec un fond transparent (ceci améliore le rendu du document s'il utilise un "filigrane" comme c'est le cas pour le moment).
+
+
+==========
+2017-01-21
+==========
+
+**¨1ERE version "à relire" du document "Baseball des couleurs - Une petite étude théorique":** cette version nécessite une relecture externe (par contre les codes sont un peu "moches").

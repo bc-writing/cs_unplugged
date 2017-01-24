@@ -1,0 +1,81 @@
+%UTILE ? ajouter methi-ode au hasard mais avec bon deo-placement pourdiminuer SL(C) si possible !!!
+
+\documentclass[a4,11pt]{article}
+	\usepackage{template/css-color}
+    \usepackage{template/css-gray}
+
+    \usepackage{template/general}
+    \usepackage{template/quote}
+    \usepackage{template/algo}
+    \usepackage{template/math}
+    
+    \usepackage[
+        type={CC},
+        modifier={by-nc-sa},
+        version={4.0},
+    ]{doclicense}
+    
+% DRAFT MODE !
+	\usepackage[printwatermark]{xwatermark}
+
+	\newwatermark[%
+		allpages,%
+		color=red!20,%
+		angle=45,%
+		scale=1.1,%
+		xpos=-10, ypos=30]{BROUILLON - TEXTE EN DEVENIR}
+
+	\newwatermark[%
+		allpages,%
+		color=red!20,%
+		angle=45,%
+		scale=1.1,%
+		xpos=5, ypos=-5]{BESOIN DE RELECTURES EXTERNES}
+
+
+\begin{document}
+
+\addtitle{%
+    title      = {Baseball des couleurs - Une petite étude théorique},
+    name       = {Christophe BAL},
+    mail       = {projetmbc@gmail.com},
+    version    = {Version du 2017-01-21},
+    addlicence = yes,
+%    repo       = {https://github.com/bc-writings-algo-general/algorithms_with_paper},
+%    repofolder = {fr}
+}
+
+\vspace{3cm}
+
+\hrule
+
+\tableofcontents
+
+\vspace{4ex}
+
+\hrule
+
+\newpage
+
+
+
+\section{Origine du jeu}    % RELU ? NON
+    \input{content/origin.tex}
+
+
+\section{Les règles}    % RELU ? NON
+    \input{content/rules.tex}
+
+
+\section{Premier contact : la méthode \textit{\og une base à la fois \fg}}    % RELU ? NON
+    \input{content/algo_selection.tex}
+
+
+\section{Soyons opportuniste : la méthode \textit{\og on avance au mieux \fg}}    % RELU ? NON
+    \input{content/algo_bubble.tex}
+
+
+\section{Annexe : nombre de configurations possibles}    % RELU ? NON
+    \input{content/annex.tex}
+
+\end{document}
