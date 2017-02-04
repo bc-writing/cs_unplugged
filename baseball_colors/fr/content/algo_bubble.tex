@@ -78,7 +78,7 @@ Intuitivement, on sent bien que l'on ne va pas entrer dans une boucle infinie ma
 		\\
 		\vspace{0.4em}
 		\tcp{d donne la direction que doit suivre le trou.}
-		\tcp{\quad \textbullet{} d = 1 pour un déplacement vers la droite.}
+		\tcp{\quad \textbullet{} d = 1  pour un déplacement vers la droite.}
 		\tcp{\quad \textbullet{} d = -1 pour un déplacement vers la gauche.}
 		$d \leftarrow 1$
 		\\
@@ -138,13 +138,15 @@ Les instructions sont clairement non ambigües. Prouvons les propriétés de \qu
 	\begin{enumerate}
 		\item À chaque jeton on associe le numéro de sa couleur, et l'on considère le trou comme un jeton associé à l'entier $(-1)$.
 		
-		\item Commençons par considérer les jetons de la base N°0.
+		\item Commençons alors par considérer les jetons de la base n°0.
 		
 		\begin{enumerate}		
 			\item Si les deux jetons sont de la même valeur $x$, on définit la liste $L({\mathscr{C})} = [x \, , x]$ notée en utilisant des crochets. Dans une liste, l'ordre d'écriture est important et il peut y avoir des répétitions.
 		
 			\item Si les deux jetons sont de valeurs différentes $x$ et $y$, on définit la liste $L({\mathscr{C})} = [x \, , y]$ si $x < y$, et $L({\mathscr{C})} = [y \, , x]$ sinon.
 		\end{enumerate}
+		
+		En résumé, $L({\mathscr{C})} = [\alpha \, , \beta]$ avec $\alpha$ et $\beta$ où sont les valeurs des jetons sur la base n°0.
 		
 		\item Ensuite on passe aux jetons de la base n°1.
 		
@@ -163,14 +165,14 @@ Les instructions sont clairement non ambigües. Prouvons les propriétés de \qu
 	\begin{center}   % [2, 2, 3, None, 3, 1, 4, 0, 4, 1]
 		\includegraphics[scale= 0.45]{content/algo_bubble/modelization/example_a.png}
 		
-		[{\color{black} 2 , 2} , {\color{blue} 3 , $-1$} , {\color{ForestGreen} 1 , 3} , {\color{Goldenrod} 0 , 4} , {\color{red} 1 , 4}]
+		[{\color{black} 2 , 2} , {\color{blue} $-1$ , 3} , {\color{ForestGreen} 1 , 3} , {\color{Goldenrod} 0 , 4} , {\color{red} 1 , 4}]
 
 
 		\medskip     % [4, 2, 3, 0, 2, 3, 1, 4, 1, None]
 		
 		\includegraphics[scale= 0.45]{content/algo_bubble/modelization/example_b.png}
 		
-		[{\color{black} 4 , 2} , {\color{blue} 3 , 0} , {\color{ForestGreen} 2 , 3} , {\color{Goldenrod} 1 , 4} , {\color{red} 1 , $-1$}]
+		[{\color{black} 2 , 4} , {\color{blue} 0 , 3} , {\color{ForestGreen} 2 , 3} , {\color{Goldenrod} 1 , 4} , {\color{red} $-1$ , 1}]
 	\end{center}
 
 	Les listes de nombres de même taille sont comparables comme le sont les mots d'un dictionnaire, on parle d'ordre lexicographique. Par exemple, nous avons :
@@ -210,7 +212,7 @@ Les instructions sont clairement non ambigües. Prouvons les propriétés de \qu
 
 	\medskip
 
-	\textit{Fait n°2 : la configuration gagnante est la seule telle que le trou soit dans la base n°0 et telle que sa sous-liste soit minimale (c'est à dire qu'elle inférieure ou égale à toutes les listes $SL(\mathscr{C})$ possibles).}
+	\textit{Fait n°2 : la configuration gagnante est la seule telle que le trou soit dans la base n°0 et telle que sa sous-liste soit minimale (c'est à dire qu'elle est inférieure ou égale à toutes les listes $SL(\mathscr{C})$ possibles).}
 
 
 	\medskip
@@ -233,7 +235,8 @@ Les instructions sont clairement non ambigües. Prouvons les propriétés de \qu
 	\medskip
 
 	Considérons le cas où le trou se déplace vers la droite. 
-	Notons $L(\mathscr{C}_1) = [ \text{\ \dots{} , $-1$ , $x$ , $y$ , $z$ , \dots{} \ } ]$ où les points de suspension indiquent des éventuelles paires de valeurs. En particulier, $(-1)$ et $x$ sont les valeurs de deux jetons partageant la même base, tandis que $y$ et $z$ sont celles de deux autres jetons dans la base voisine à droite (notons que forcément $y \leqslant z$). Nous avons deux situations.
+	Notons $L(\mathscr{C}_1) = [ \text{\ \dots{} , $-1$ , $x$ , $y$ , $z$ , \dots{} \ } ]$ où les points de suspension indiquent des éventuelles paires de valeurs.
+	En particulier, $(-1)$ et $x$ sont les valeurs du trou et du jeton partageant la même base, tandis que $y$ et $z$ sont celles de deux autres jetons dans la base voisine à droite (notons que forcément $y \leqslant z$). Nous avons deux situations.
 
 	\begin{enumerate}
 		\item \textbf{Cas 1 :} $x \leqslant y$.
@@ -264,7 +267,7 @@ Les instructions sont clairement non ambigües. Prouvons les propriétés de \qu
 	Parmi tous les $y$ possibles, on choisit celui qui est le plus à gauche possible dans $SL(\mathscr{C})$, c'est à dire celui qui est le plus prêt de $x$ (dans ce cas, $y$ est la plus petite valeur de sa base).
 	Avec ce choix, les valeurs éventuelles $w$ entre $x$ et $y$ dans $SL(\mathscr{C})$ vérifient toutes $y < x \leqslant w$. Ceci permet donc de choisir $x$ et $y$ voisins dans $SL(\mathscr{C})$ (avec des bases associés voisines différentes).
 	Avec ce nouveau choix, $L(\mathscr{C}) = [ \text{\ \dots{} , $g$ , $x$ , $y$ , $d$ , \dots{} \ } ]$ où les points de suspension indiquent des éventuelles paires de valeurs. Notons que seul $g$ peut être égal à $(-1)$.
-	Désignons par ${\cal B}_x$ et ${\cal B}_y$ les basses associées aux valeurs $x$ et $y$.
+	Désignons par $\mathcal{B}_x$ et $\mathcal{B}_y$ les basses associées aux valeurs $x$ et $y$.
 	
 	
 	\medskip
@@ -276,15 +279,15 @@ Les instructions sont clairement non ambigües. Prouvons les propriétés de \qu
 		
 		Si l'algorithme est dans une phase de déplacement vers la droite, alors comme dans la preuve du fait n°3, voir son cas 2, nous savons que la configuration suivante $\mathscr{C}^\prime$ vérifie $SL(\mathscr{C}^\prime) < SL(\mathscr{C})$ ce qui prouve ici le fait n°4.
 		
-		Sinon le trou va aller vers la base n°0. Si lors de ces déplacements, l'une des configurations $\mathscr{C}^\prime$ vérifie $SL(\mathscr{C}^\prime) < SL(\mathscr{C})$ alors le fait n°4 sera validé. Sinon le trou reviendra en direction de la base ${\cal B}_x$. Si lors de ces déplacements, l'une des configurations $\mathscr{C}^\prime$ vérifie $SL(\mathscr{C}^\prime) < SL(\mathscr{C})$ alors le fait n°4 sera validé. Sinon nous nous retrouvons dans le sous-cas traité ci-dessus où l'on avait un déplacement du trou vers la droite avec $g = -1$, et de nouveau nous obtenons le résultat souhaité.
+		Sinon le trou va aller vers la base n°0. Si lors de ces déplacements, l'une des configurations $\mathscr{C}^\prime$ vérifie $SL(\mathscr{C}^\prime) < SL(\mathscr{C})$ alors le fait n°4 sera validé. Sinon le trou reviendra en direction de la base $\mathcal{B}_x$. Si lors de ces déplacements, l'une des configurations $\mathscr{C}^\prime$ vérifie $SL(\mathscr{C}^\prime) < SL(\mathscr{C})$ alors le fait n°4 sera validé. Sinon nous nous retrouvons dans le sous-cas traité ci-dessus où l'on avait un déplacement du trou vers la droite avec $g = -1$, et de nouveau nous obtenons le résultat souhaité.
 		
-		\item \textbf{Cas 2 :} $g \neq -1$ et le trou est à gauche de la base ${\cal B}_x$. 
+		\item \textbf{Cas 2 :} $g \neq -1$ et le trou est à gauche de la base $\mathcal{B}_x$. 
 		
 		Si l'algorithme est dans une phase de déplacement vers la droite, alors le trou va prendre la place de $g$ et l'on retombe dans le cas 1. Si le déplacement se fait vers la gauche, on peut appliquer exactement le même raisonnement que dans le deuxième sous-cas du cas 1 traité ci-dessus.
 		
-		\item \textbf{Cas 3 :} $g \neq -1$ et le trou est à droite de la base ${\cal B}_y$. 
+		\item \textbf{Cas 3 :} $g \neq -1$ et le trou est à droite de la base $\mathcal{B}_y$. 
 		
-		L'algorithme va amener le trou dans la base voisine de ${\cal B}_y$ de sorte que l'on ait une configuration $\mathscr{C}^\prime$ telle que $L(\mathscr{C}^\prime) = [ \text{\ \dots{} , $g$ , $x$ , $y$ , $d$ , $-1$ , $\alpha$ , \dots{} \ } ]$ avec $SL(\mathscr{C}^\prime)$ non minimal.
+		L'algorithme va amener le trou dans la base voisine de $\mathcal{B}_y$ de sorte que l'on ait une configuration $\mathscr{C}^\prime$ telle que $L(\mathscr{C}^\prime) = [ \text{\ \dots{} , $g$ , $x$ , $y$ , $d$ , $-1$ , $\alpha$ , \dots{} \ } ]$ avec $SL(\mathscr{C}^\prime)$ non minimal.
 		
 		Si lors de ces déplacements une configuration $\mathscr{C}^{\prime\prime}$ vérifie $SL(\mathscr{C}^{\prime\prime}) < SL(\mathscr{C})$, le fait n°4 est bien entendu vérifié.
 		Sinon $L(\mathscr{C}^\prime)$ devient $[ \text{\ \dots{} , $g$ , $x$ , $-1$ , $y$ , $?$ , $?$ , \dots{} \ } ]$, puis $[ \text{\ \dots{} , $-1$ , $g$ , {\color{red} $y$ , $x$} , $?$ , $?$ , \dots{} \ } ]$ où l'on utilisé le fait que $y < x$. Pour cette dernière liste, la configuration $\mathscr{C}^{\prime\prime\prime}$ vérifie $SL(\mathscr{C}^{\prime\prime\prime}) < SL(\mathscr{C})$ et c'est gagné !

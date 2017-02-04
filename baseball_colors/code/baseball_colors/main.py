@@ -1,7 +1,8 @@
 from pathlib import Path
 
-algoname = "gotoleft"
-algoname = "greedy"
+algoname = "onebase"
+algoname = "heat"
+algoname = "backtrack"
 
 output   = "asciiart"
 output   = "picture"
@@ -17,7 +18,7 @@ folder = Path("/Users/projetmbc/tests")
 #     gameboard = [None, 0, 2, 2, 1, 1, 3, 3, 4, 4]
 #         ---> gotoleft meilleur que greedy
 
-size      = 10
+size      = 5
 gameboard = [None] + list(range(size)) + list(range(1, size))
 
 import random
@@ -25,20 +26,20 @@ random.shuffle(gameboard)
 
 # gameboard = [0, None, 2, 1, 1, 2]
 
-gameboard = [4, 4, None, 0, 1, 1, 2, 2, 3, 3]
-
-gameboard = [3, 1, 2, None, 4, 1, 4, 0, 2, 3]
-gameboard = [2, None, 4, 1, 4, 0, 2, 3, 3, 1]
-gameboard = [2, None, 4, 1, 0, 2, 3, 3, 1, 4]
-gameboard = [3, 1, 2, 4, 1, 4, 0, 2, 3, None]
-
-gameboard = [4, 2, 3, 0, 2, 3, 1, 4, 1, None]
-gameboard = [3, 1, 2, None, 3, 1, 4, 0, 4, 2]
-
-gameboard = [1, 2, 3, None, 4, 1, 4, 0, 2, 3]
-# gameboard = [1, 2, 3, 1, None, 0, 3, 2, 4, 4]
-
-gameboard = [4, 2, 3, 0, 2, 3, 1, 4, 1, None]
+# gameboard = [4, 4, None, 0, 1, 1, 2, 2, 3, 3]
+#
+# gameboard = [3, 1, 2, None, 4, 1, 4, 0, 2, 3]
+# gameboard = [2, None, 4, 1, 4, 0, 2, 3, 3, 1]
+# gameboard = [2, None, 4, 1, 0, 2, 3, 3, 1, 4]
+# gameboard = [3, 1, 2, 4, 1, 4, 0, 2, 3, None]
+#
+# gameboard = [4, 2, 3, 0, 2, 3, 1, 4, 1, None]
+# gameboard = [3, 1, 2, None, 3, 1, 4, 0, 4, 2]
+#
+# gameboard = [1, 2, 3, None, 4, 1, 4, 0, 2, 3]
+# # gameboard = [1, 2, 3, 1, None, 0, 3, 2, 4, 4]
+#
+# gameboard = [4, 4, None, 0, 1, 1, 2, 2, 3, 3]
 
 import importlib
 

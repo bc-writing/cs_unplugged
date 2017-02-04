@@ -4,7 +4,8 @@ import solve.model as model
 
 class Solver(model.Solver):
     """
-The method used here is to move ???
+The method used here is to move the hole from left to right and conversely,
+and to move the token the farthest from its base.
     """
 
     def solve(self, gameboard):
@@ -34,8 +35,7 @@ The method used here is to move ???
 
     def stopmoving(self):
         for i, val in enumerate(self.gameboard):
-            if val is not None \
-            and val != i // 2:
+            if val is not None and val != i // 2:
                 return False
 
         return True

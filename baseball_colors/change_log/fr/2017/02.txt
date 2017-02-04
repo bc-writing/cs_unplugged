@@ -1,0 +1,5 @@
+==========
+2017-02-04
+==========
+
+**Document "Baseball des couleurs":** le nombre de configurations était totalement faux. L'erreur a été détectée indirectement en testant le code, en cours de rédaction, qui trouve par "backtracking" le chemin le plus court pour résoudre le jeu. L'erreur très grossière a été corrigée ! Vive la mise en pratique ! Pour ¨info, il faut raisonner sur le nombre de couleurs disponibles et non sur les jetons restants !

@@ -1,9 +1,12 @@
 class ArtistSolver():
-    def __init__(self, solver):
+    def __init__(self, solver, *args, **kwargs):
         self.solver = solver
 
     def draw(self, gameboard, *args, **kwargs):
         self.size = len(gameboard)
+
+        if self.size > 20:
+            raise ValueError("game with more than 10 bases is not supported")
 
         print(self.draw_oneline(gameboard))
 

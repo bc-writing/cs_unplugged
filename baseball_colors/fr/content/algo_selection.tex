@@ -5,7 +5,7 @@ Avant de chercher une solution optimale, commençons déjà par en trouver au mo
 Laissant de côté le problème de la solution la plus efficace, nous avons assez vite les deux idées simples suivantes.
 
 \begin{enumerate}
-	\item Casser le cercle pour représenter les bases en ligne comme ci-dessous où il est important de bien mettre à gauche la base noire, celle qu'avec un seul jeton de même couleur une fois le problème résolu.
+	\item Casser le cercle pour représenter les bases en ligne comme ci-dessous où il est important de bien mettre à gauche la base noire, celle n'ayant qu'un seul jeton de même couleur une fois le problème résolu.
 
 	\item S'interdire tout mouvement de la base rouge, la plus à droite, à la base noire, la plus à gauche.
 \end{enumerate}
@@ -17,9 +17,9 @@ Laissant de côté le problème de la solution la plus efficace, nous avons asse
 \vspace{-0.8em}
 
 
-L'ajout de la contrainte va nous permettre de donner un algorithme simple à décrire mais aussi facile à valider. Par contre, nous devinons bien que nous nous interdisons de résoudre rapidement le problème.
+L'ajout d'une contrainte va nous permettre de donner un algorithme simple à décrire mais aussi facile à valider. Par contre, nous devinons bien que nous nous interdisons de résoudre rapidement le problème.
 %(les deux sections suivantes vont s'intéresser à la recherche d'une solution optimale)
-La méthode employée consiste à remplir la cinquième base, puis la quatrième... en cherchant juste à rapatrier les jetons manquants. Voici des premiers mouvements possibles où vous noterez au passage qu'une fois une base remplie à droite, celle-ci n'est plus jamais utilisée (le jeu évolue dans la colonne de gauche puis dans celle de droite).
+La méthode que nous allons présenter va consister à remplir la cinquième base, puis la quatrième... en cherchant juste à rapatrier les jetons manquants. Voici des premiers mouvements possibles où vous noterez au passage qu'une fois une base remplie à droite, celle-ci n'est plus jamais utilisée (les étapes évoluent dans la colonne de gauche puis dans celle de droite).
 
 
 \medskip
@@ -203,7 +203,7 @@ En pratique, la \quote{non ambiguïté} n'est jamais justifiée, par contre les 
 	\medskip
 
 	\begin{itemize}
-		\item[\textbullet] Grâce au fait n°1, il est effectivement possible de placer le trou dans la base à droite de celle du jeton rouge à déplacer, et ceci sans faire bouger l'autre jeton rouge déjà dans la base rouge.
+		\item[\textbullet] Grâce au fait n°1, il est effectivement possible de placer le trou dans la base à droite de celle du jeton rouge à déplacer, et ceci sans faire bouger un éventuel jeton rouge déjà dans la base rouge.
 
 		\medskip
 

@@ -2,21 +2,34 @@
 TODO
 ====
 
-# mogrify -trim *.png
-# mogrify -mattecolor white -frame 10x10 *.png
-# mogrify -bordercolor none -border 10 *.png
+
+> ----------------- <
+
+CODE::
+    codage de la version "backtracking" établissant l'arbre de toutes les solutions.
 
 
 > ----------------- <
 
 CODE::
-    revoir la couleur noir , ajouter du alpha pour obtenir un truc bien diéférentiable entre belu foncé et noir !!!!
+    square
+        ---> en ligne mais avec des carrés
 
-    motof pour les daltoniens
 
-    version noir et blanc numéroté via
-        ---> J1 pour joueur ou jeton 1
-        ---> B1 pour base 1
+    > ----------------- <
+
+CODE::
+    ascii : mode couleur + mise ne valeur des pions bougé via bold
+            via bibliotèque
+
+
+> ----------------- <
+
+ajout d'une page à découper au format circulaire at aussi carré arrondi (car plus simple à découper que des disques)
+
+faire une version pour daltonien avec motif
+
+faire auussi une version numérique (codage maison)
 
 
 > ----------------- <
@@ -41,6 +54,25 @@ THÉORIE::
         ---> ... etc
 
     Obtient-on un truc générale humainement intelligible ????
+
+
+> ----------------- <
+
+# mogrify -trim *.png
+# mogrify -mattecolor white -frame 10x10 *.png
+# mogrify -bordercolor none -border 10 *.png
+
+
+> ----------------- <
+
+CODE::
+    revoir la couleur noir , ajouter du alpha pour obtenir un truc bien diéférentiable entre belu foncé et noir !!!!
+
+    motof pour les daltoniens
+
+    version noir et blanc numéroté via
+        ---> J1 pour joueur ou jeton 1
+        ---> B1 pour base 1
 
 
 > ----------------- <
@@ -112,3 +144,16 @@ Solution optimale (à démontrer)
     ----> ne se déplacer que là il y a du nouveau à faire !!!
     ----> bien entendu s'autoirse rà tourner (déplacement modulo la longuer de la liste)
     ---->   RÉSUMÉ : choisir le mouvement qui va faire diminuer le nombre associé et si pas possivble directement aller à la position la plus proche permettant de faire diminuer le nombre
+
+
+    > ----------------- <
+
+    snake     UTILE ?????
+        ---> des carrées alignées avec retour à la ligne
+    1 ---> 2 ---> 3 ---> 4
+                         |
+                         ^
+    8 <--- 7 <--- 6 <--- 5
+    |
+    ^
+    9 ---> ...
