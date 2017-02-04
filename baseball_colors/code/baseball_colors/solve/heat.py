@@ -2,6 +2,7 @@ import random
 
 import solve.model as model
 
+
 class Solver(model.Solver):
     """
 The method used here is to move the hole from left to right and conversely,
@@ -71,31 +72,3 @@ and to move the token the farthest from its base.
         yield self.gameboard
 
         self.hole_pos = next_token_pos
-
-
-# --------------------- #
-# -- FOR BASIC TESTS -- #
-# --------------------- #
-
-if __name__ == "__main__":
-    size   = 5
-    solver = Solver()
-
-    gameboard = [None] + list(range(1, size)) + list(range(size))
-    random.shuffle(gameboard)
-
-# Bugs found
-#     gameboard = [3, 3, None, 1, 0, 1, 2, 2, 4, 4, 5, 5]
-#     gameboard = [0, 1, None, 1, 2, 2, 3, 3, 4, 4]
-    gameboard = [None, 0, 2, 2, 1, 1, 3, 3, 4, 4]
-
-    printer = lambda g: [
-        "X" if x == None
-        else str(x)
-        for x in g
-    ]
-
-    print("Solving {0}".format(printer(gameboard)))
-
-    for onestep in solver.solve(gameboard):
-        print("   ---> {0}".format(printer(onestep)))

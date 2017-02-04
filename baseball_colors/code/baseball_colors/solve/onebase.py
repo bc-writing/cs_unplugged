@@ -2,6 +2,7 @@ import random
 
 import solve.model as model
 
+
 class Solver(model.Solver):
     """
 The method used here is to sort the values from the highest in the left side
@@ -111,29 +112,3 @@ to the lowest in the right side.
                 yield from self.move_hole()
 
             nextcell += 1
-
-
-# --------------------- #
-# -- FOR BASIC TESTS -- #
-# --------------------- #
-
-if __name__ == "__main__":
-    size   = 5
-    solver = Solver()
-
-    gameboard = [None] + list(range(1, size)) + list(range(size))
-    random.shuffle(gameboard)
-
-# Bugs found
-#     gameboard = [3, 3, None, 1, 0, 1, 2, 2, 4, 4, 5, 5]
-
-    printer = lambda g: [
-        "X" if x == None
-        else str(x)
-        for x in g
-    ]
-
-    print("Solving {0}".format(printer(gameboard)))
-
-    for onestep in solver.solve(gameboard):
-        print("   ---> {0}".format(printer(onestep)))

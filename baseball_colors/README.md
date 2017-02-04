@@ -14,7 +14,7 @@ Ne pas hésiter à réutiliser n'importe quel document dans le respect de la lic
 DERNIERS CHANGEMENTS IMPORTANTS !
 =================================
 
-2017-02-?????????
+2017-02-04
 ----------
 
-**Annexe - Correction d'une grosse erreur de raisonnement :** le calcul du nombre de configurations était faux !
+**Annexe - Correction d'une grosse erreur de raisonnement :** le calcul du nombre de configurations était faux ! En espérant qu'aucune autre erreur ait été commise....

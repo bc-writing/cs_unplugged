@@ -2,7 +2,7 @@ from pathlib import Path
 
 algoname = "onebase"
 algoname = "heat"
-algoname = "backtrack"
+algoname = "treesol"
 
 output   = "asciiart"
 output   = "picture"
@@ -38,8 +38,16 @@ random.shuffle(gameboard)
 #
 # gameboard = [1, 2, 3, None, 4, 1, 4, 0, 2, 3]
 # # gameboard = [1, 2, 3, 1, None, 0, 3, 2, 4, 4]
-#
-# gameboard = [4, 4, None, 0, 1, 1, 2, 2, 3, 3]
+
+# gameboard = [2, 1, 1, 2, None, 0]
+
+# > : meilleur que...
+
+# bactrack > onebase >> heat
+# gameboard = [1, 1, 2, 2, 0, None]
+
+# bactrack >> heat > onebase
+gameboard = [3, 3, 2, 4, 1, 4, 0, 1, 2, None]
 
 import importlib
 

@@ -115,7 +115,7 @@ Par contre, si l'on veut par exemple calculer $C(36)$, il faut être un peu plus
 \bigskip
 
 \begin{myverb}
-valsB, valsC = \{\}, \{\}
+valsP, valsC = \{\}, \{\}
 
 def C(n):
     if n == 1:
@@ -126,22 +126,22 @@ def C(n):
     if n in valsC:
         return valsC[n]
 
-    val      = n * B(n - 1) + n*(n-1)*C(n - 1)  
+    val      = n * P(n - 1) + n*(n-1)*C(n - 1)  
     valsC[n] = val
     
     return val
 
-def B(n):
+def P(n):
     if n == 1:
         return 1
 
-    global valsB
+    global valsP
     
-    if n in valsB:
-        return valsB[n]
+    if n in valsP:
+        return valsP[n]
 
-    val      = n * B(n - 1) + n*(n-1)/2*C(n - 1)
-    valsB[n] = val
+    val      = n * P(n - 1) + n*(n-1)/2*C(n - 1)
+    valsP[n] = val
     
     return val
     

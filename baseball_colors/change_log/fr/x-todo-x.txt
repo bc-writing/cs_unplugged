@@ -6,12 +6,6 @@ TODO
 > ----------------- <
 
 CODE::
-    codage de la version "backtracking" établissant l'arbre de toutes les solutions.
-
-
-> ----------------- <
-
-CODE::
     square
         ---> en ligne mais avec des carrés
 
