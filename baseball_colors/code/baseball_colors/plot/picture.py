@@ -36,7 +36,11 @@ class ArtistSolver():
             )
 
 
+COLORS = "kbgyrcm"
+
 def colormap(val, maxval, border = "w", style = "jet"):
+    global COLORS
+
     if val is None:
         color = "w"
 
@@ -49,7 +53,7 @@ def colormap(val, maxval, border = "w", style = "jet"):
 # y: yellow
 # k: black
 # w: white
-        colors = [x for x in "kbgyrcm"]
+        colors = [x for x in COLORS]
         color  = colors[val]
 
     else:

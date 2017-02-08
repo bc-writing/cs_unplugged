@@ -1,0 +1,17 @@
+
+\begin{center}
+    \begin{tikzpicture}[
+    rotate=0,
+    level distance=1.5cm,
+        level 1/.style={sibling distance=5cm},
+        level 2/.style={sibling distance=2.25cm},
+    ]
+    \node{\includegraphics[scale=0.14]{content/optimal/tree_sol/moves/0.png}}
+child{node{\includegraphics[scale=0.14]{content/optimal/tree_sol/moves/1.png}}
+child{node{\includegraphics[scale=0.14]{content/optimal/tree_sol/moves/3.png}}}
+child{node{\includegraphics[scale=0.14]{content/optimal/tree_sol/moves/4.png}}}}
+child{node{\includegraphics[scale=0.14]{content/optimal/tree_sol/moves/2.png}}
+child{node{\includegraphics[scale=0.14]{content/optimal/tree_sol/moves/5.png}}}
+child{node{\includegraphics[scale=0.14]{content/optimal/tree_sol/moves/6.png}}}};
+    \end{tikzpicture}
+\end{center}

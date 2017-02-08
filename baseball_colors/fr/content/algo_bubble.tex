@@ -105,13 +105,11 @@ Intuitivement, on sent bien que l'on ne va pas entrer dans une boucle infinie ma
 				\tcp{v est le numéro de la base voisine de celle du trou où l'on doit mettre ce dernier.}
 				$v \leftarrow t + d$
 				\\
-				$max$ : maximum des numéros des couleurs des jetons dans la base n°$v$.
-				\\
-				$min$ : minimum des numéros des couleurs des jetons dans la base n°$v$.
-				\\
 				\vspace{0.4em}
 				\uIf{d = 1}{
 					\vspace{0.4em}
+					$min$ : minimum des numéros des couleurs des jetons dans la base n°$v$.
+					\\
 					Déplacer un jeton de couleur $min$
 					de la base n°$v$ vers la base n°$t$.
 					\\
@@ -119,6 +117,8 @@ Intuitivement, on sent bien que l'on ne va pas entrer dans une boucle infinie ma
 				}
 				\Else{
 					\vspace{0.4em}
+					$max$ : maximum des numéros des couleurs des jetons dans la base n°$v$.
+					\\
 					Déplacer un jeton de couleur $max$
 					de la base n°$v$ vers la base n°$t$.
 				}

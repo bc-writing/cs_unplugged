@@ -1,0 +1,63 @@
+Voici l'algorithme qui va nous permettre de toujours avoir le moins de déplacements à faire pour arriver à la solution gagnante.
+
+
+Commençons par proposer une nouvelle modélisation du jeu qui soit bien plus fine que celles utilisées dans les deux sections précédentes. 
+Que cherche-t-on à faire ? Trouver une solution peu coûteuse. Très bien ! Mais dans ce cas, comment évalue-t-on ce coup ? Nous choisissons de chercher à minimiser le nombre de déplacements du trou (donc toute opération autre que le déplacement d'un jeton ne sera pas comptabilisée).
+Dans le premier cas ci-dessus, le coût est strictement plus grand que $9$, tandis que dans le second cas, il vaut exactement $9$. 
+
+
+\medskip
+
+Soit une configuration $\cal C$
+
+??????????????????????????????????????????
+notation en ligne car pratique mais ici on s'autorise le passage de la base tout à droite à celle tout à gauche
+??????????????????????????????????????????
+
+. Pour chaque jeton $j$, nous notons $deg \ j$ son degré d'éloignement qui est égal par définition aux nombres de bases entre sa base comprise et la base de sa couleur.
+Par exemple, au début des exemples ci-dessus, tous les jetons ont un degré d'éloignement égal à un.
+
+
+\medskip
+
+Nous pouvons alors proposer la troisième méthode suivante (notez la concision de l'algorithme).   PAS BON PAS BON PAS BON PAS BON PAS BON PAS BON PAS BON PAS BON PAS BON PAS BON ( voir juste parès !!!!
+
+\bigskip
+
+\begin{algo}
+	\Data{une configuration quelconque de début de jeu}
+	\Result{une configuration où tous les jetons sont rentrées dans leur base}
+	\vspace{0.4em}
+    \Begin{
+		\vspace{0.4em}
+		\While{la configuration contient un jeton qui n'est pas dans sa base}{
+			\vspace{0.4em}
+			$j_1$ , $j_2$ , $j_3$ et $j_4$ désignent les jetons déplaçables.
+			\\
+			\vspace{0.4em}
+			Pour $k$ allant de $1$ à $4$, on note $d_k$ est le dégré d'éloignement du jeton $j_k$ s'il était déplacé.
+			\\
+			\vspace{0.4em}
+			Déplacer réellement un jeton $j_k$, éventuellement choisi au hasard, tel que $d_k$ soit minimal.
+		}
+    }
+\end{algo}
+
+
+\bigskip
+
+Les instructions étant sans ambiguïté, nous allons pouvoir nous attaquer très sérieusement à la validation des propriétés de \quote{finitude} et de \quote{résolution}.
+
+\begin{proof}
+	????????????????????
+	
+	CODER POUR VOIR SI CEL MARCHE 
+	
+	PAR EXEMPLe, faire gaffe au cas ou les quatre jetons déplaçables ont le même degré dans la config du moment
+	
+	r r t n j j b b v v
+	
+	r r j n t j b b v v
+	
+	pas possible car boucle infinie possible
+\end{proof}

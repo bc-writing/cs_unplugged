@@ -1,6 +1,6 @@
 On peut se demander combien de configurations de jeux sont possibles. C'est ce que nous allons chercher à calculer. Soit $C(n)$ le nombre de configurations de jeux pour $n \geqslant 1$ base(s) (par exemple, $C(1) = 1$). Nous avons au total $(2n - 1)$ jetons et $n$ \quote{couleurs} différentes.
 Nous dirons que le jeton associé au trou est le jeton noir. 
-Enfin, nous allons noter $\mathcal{B}_1$ , $\mathcal{B}_2$ , \dots{} , et  $\mathcal{B}_n$ les bases rangées dans un ordre quelconque. Dans la suite, nous supposerons $n \geqslant 2$.
+Enfin, nous allons noter $\mathcal{B}_1$ , $\mathcal{B}_2$ , \dots{} , et  $\mathcal{B}_n$ les bases \quote{rangées} dans l'ordre initial de mise en place du jeu. Dans la suite, nous supposerons $n \geqslant 2$.
 
 
 \medskip
@@ -9,11 +9,12 @@ Commençons par examiner les configurations telles que la base $\mathcal{B}_1$ c
 \footnote{
 	Le lecteur notera que ce qui compte dans les raisonnements de cette section, c'est la couleur tirée et non le jeton tiré. C'est une subtilité importante à noter.
 	Dans une première version de ce document, l'auteur avait raisonné sur les jetons, ce qui lui avait fait obtenir et \quote{démontrer} une formule fausse.
+	Cette erreur a été repérée très rapidement lors de la fabrication de l'arbre présenté dans la section précédente.
 }.
 
 \begin{enumerate}
     \item \textit{$\mathcal{B}_1$ contient aussi le jeton noir.} 
-    Dans ce cas, nous devons compter le nombre de façons différentes de placer $(n - 1)$ paires de jetons de même couleur sur $(n-1)$ bases, sachant que sur chaque base l'ordre des jetons n'est pas important. Nous n'allons pas chercher à calculer ce nombre. Nous le notons juste $P(n - 1)$ (les hypothèses sur les couleurs sont similaires à celles du jeu du baseball des couleurs sauf que l'on n'a plus de trou, ni de jeton noir associé au trou). Indiquons que l'on a clairement $P(1) = 1$.
+    Dans ce cas, nous devons compter le nombre de façons différentes de placer des jetons à partir de $(n - 1)$ paires de jetons de même couleur sur $(n-1)$ bases, sachant que sur chaque base l'ordre des jetons n'est pas important. Nous n'allons pas chercher à calculer ce nombre. Nous le notons juste $P(n - 1)$ (les hypothèses sur les couleurs sont similaires à celles du jeu du baseball des couleurs sauf que l'on n'a plus de trou, ni de jeton noir associé au trou). Indiquons que l'on a clairement $P(1) = 1$.
         
     \item \textit{$\mathcal{B}_1$ ne contient pas le jeton noir.} 
     Notant $c$ la couleur du jeton dans la base $\mathcal{B}_1$, sur les $(n-1)$ bases restantes, il reste à placer $(n - 2)$ paires de jetons de même couleur, ainsi que deux jetons de couleurs différentes \quote{sans jumeau}, à savoir les jetons de couleurs respectives $c$ et noire. Interprétant le jeton de couleur $c$ comme un trou, nous retombons sur une configuration d'un jeu de baseball des couleurs mais avec $(n-1)$ jetons. Ceci nous fait donc $C(n -1)$ possibilités associées à la couleur $c$. 
@@ -24,15 +25,15 @@ D'après ce qui précède, il y a donc $P(n - 1) + (n-1) C(n-1)$ configurations 
 
 \medskip
 
-En reprenant un raisonnement analogue au précédent, et en notant qu'il y a $n$ choix de bases où placer le trou, nous arrivons à la relation $C(n) = n \left[ P(n - 1) + (n-1) C(n-1) \right]$, soit la formule suivante :
+En répétant le raisonnement précédent, et en notant qu'il y a $n$ choix de bases où placer le trou, nous arrivons à la relation $C(n) = n \left[ P(n - 1) + (n-1) C(n-1) \right]$. Nous réécrivons ceci comme suit :
 \begin{equation}
     C(n) = n P(n - 1) + n(n-1) C(n-1)
 \end{equation}
 
 
-Nous allons reprendre un raisonnement similaire à ce qui a été fait ci-dessus pour trouver une relation de récurrence pour tenter d'évaluer $P(n)$ le nombre de façons de placer $n$ paires monochromes de jetons sur $n$ bases
+Nous allons reprendre un raisonnement similaire à ce qui a été fait ci-dessus pour trouver une relation de récurrence pour tenter d'évaluer $P(n)$ le nombre de façons de placer des jetons à partir de $n$ paires monochromes de jetons sur $n$ bases
 \footnote{
-   Il ya autant de couleurs que de bases.
+   Il y a autant de couleurs différentes que de bases.
 }.
 De nouveau, nous allons d'abord raisonner sur la base $\mathcal{B}_1$. Deux cas sont possibles.
 
@@ -47,7 +48,7 @@ De nouveau, nous allons d'abord raisonner sur la base $\mathcal{B}_1$. Deux cas 
 
 \medskip
 
-Dans le premier cas, pour la base $\mathcal{B}_1$ il y a $n$ choix de couleurs, ce qui nous fait $n P(n - 1)$ configurations avec une première base monochrome.
+Dans le premier cas, pour la base $\mathcal{B}_1$, il y a $n$ choix de couleurs, ce qui nous fait $n P(n - 1)$ configurations avec une première base monochrome.
 Dans le second cas, pour la base $\mathcal{B}_1$ nous avons $n$ choix pour la première couleur, et $(n - 1)$ pour la seconde (car l'on veut deux couleurs différentes).
 Comme l'ordre ne compte pas, car tirer $c_1$ puis $c_2$, ou bien tirer $c_2$ puis $c_1$ nous donne à chaque fois la même base complétée, nous avons donc $\frac{n(n - 1)}{2}$ façons de remplir la première base avec deux couleurs différentes.
 Nous en déduisons que nous avons $\frac{n(n-1)}{2} C(n - 1)$ configurations avec une première base non monochrome.
@@ -80,14 +81,16 @@ def C(n):
         
     return n * P(n - 1) + n*(n-1)*C(n - 1)
 
+
 def P(n):
     if n == 1:
         return 1
         
     return n * P(n - 1) + n*(n-1)/2*C(n - 1)
-        
+
+       
 for k in range(2, 6):
-    print C(k)
+    print "Pour k =", k, ":", C(k)
 
 \end{myverb}
 
@@ -110,12 +113,13 @@ Ceci nous donne les résultats suivants.
 
 \medskip
 
-Par contre, si l'on veut par exemple calculer $C(36)$, il faut être un peu plus précautionneux car certains calculs sont effectués plusieurs fois. Le code suivant permet d'obtenir instantanément $C(36)$ (alors que celui qui précède est très lent). L'idée utilisée ici est de stocker tout ce qui est calculé et de regarder si une valeur à calculer a déjà été stockée en mémoire. Si c'est le cas, on récupère directement cette valeur, sinon on la calcule et on la stocke en mémoire en vue d'une éventuelle utilisation plus tard.
+Par contre, si l'on veut par exemple calculer $C(36)$, il faut être un peu plus précautionneux car dans le code précédent certains calculs sont effectués plusieurs fois. Le code suivant permet d'obtenir instantanément $C(36)$ alors que celui ci-dessus fait ceci très, très, très lentement... L'astuce consiste à stocker tout ce qui est calculé et de regarder si une valeur à calculer a déjà été stockée en mémoire. Si c'est le cas, on récupère directement cette valeur, sinon on la calcule et on la stocke en mémoire en vue d'éventuelles utilisations à venir (nous faisons ceci \quote{à la main} en utilisant des dictionnaires Python).
 
 \bigskip
 
 \begin{myverb}
 valsP, valsC = \{\}, \{\}
+
 
 def C(n):
     if n == 1:
@@ -131,6 +135,7 @@ def C(n):
     
     return val
 
+
 def P(n):
     if n == 1:
         return 1
@@ -144,14 +149,15 @@ def P(n):
     valsP[n] = val
     
     return val
-    
+
+  
 print C(36).n(10)
 
 \end{myverb}
 
 \bigskip
 
-Ceci nous donne $C(36) \approx 4,\!2 \times 10^{82}$ que l'on comparera à $10^{80}$ qui est une estimation du nombre d'atomes dans l'univers
+Ceci nous donne, sans temps de latence, $C(36) \approx 4,\!2 \times 10^{82}$ que l'on comparera à $10^{80}$ qui est une estimation du nombre d'atomes dans l'univers
 \footnote{
     Notons que si l'estimation du nombre d'atomes de l'univers est juste, alors il est tout simplement impossible \quote{d'écrire} tous les naturels de $1$ à $C(36)$ en associant chaque naturel à un seul atome de l'univers. Vertigineux !
 }.

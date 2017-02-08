@@ -1,0 +1,27 @@
+
+\begin{center}
+    \begin{tikzpicture}[
+    rotate=0,
+    level distance=1.5cm,
+        level 1/.style={sibling distance=8.5cm},
+        level 2/.style={sibling distance=4.75cm},
+        level 3/.style={sibling distance=2cm},
+    ]
+    \node{\includegraphics[scale=0.12]{content/optimal/tree_sol/moves/0.png}}
+child{node{\includegraphics[scale=0.12]{content/optimal/tree_sol/moves/1.png}}
+child{node{\includegraphics[scale=0.12]{content/optimal/tree_sol/moves/3.png}}
+child{node{\includegraphics[scale=0.12]{content/optimal/tree_sol/moves/7.png}}}
+child{node{\includegraphics[scale=0.12]{content/optimal/tree_sol/moves/8.png}}}
+child{node{\includegraphics[scale=0.12]{content/optimal/tree_sol/moves/9.png}}}}
+child{node{\includegraphics[scale=0.12]{content/optimal/tree_sol/moves/4.png}}
+child{node{\includegraphics[scale=0.12]{content/optimal/tree_sol/moves/10.png}}}
+child{node{\includegraphics[scale=0.12]{content/optimal/tree_sol/moves/11.png}}}}}
+child{node{\includegraphics[scale=0.12]{content/optimal/tree_sol/moves/2.png}}
+child{node{\includegraphics[scale=0.12]{content/optimal/tree_sol/moves/5.png}}
+child{node{\includegraphics[scale=0.12]{content/optimal/tree_sol/moves/12.png}}}
+child{node{\includegraphics[scale=0.12]{content/optimal/tree_sol/moves/13.png}}}}
+child{node{\includegraphics[scale=0.12]{content/optimal/tree_sol/moves/6.png}}
+child{node{\includegraphics[scale=0.12]{content/optimal/tree_sol/moves/14.png}}}
+child{node{\includegraphics[scale=0.12]{content/optimal/tree_sol/moves/15.png}}}}};
+    \end{tikzpicture}
+\end{center}
