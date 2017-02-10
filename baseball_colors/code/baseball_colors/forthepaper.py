@@ -39,7 +39,6 @@ while(gotonext):
             solver.nextgameboard = copy(allgameboards[board_id])
 
             allgameboards[board_id] = copy(solver.usergameboard())
-            print(allgameboards[board_id])
 
 
 # Let's build the pictures.
@@ -49,9 +48,6 @@ for board_id, board in enumerate(allgameboards):
         filepath  = folder / "moves/{0}.png".format(board_id),
         radius    = 5
     )
-
-exit()
-
 
 
 # LaTeX output.
