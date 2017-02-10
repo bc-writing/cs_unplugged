@@ -14,6 +14,12 @@ Ne pas hésiter à réutiliser n'importe quel document dans le respect de la lic
 DERNIERS CHANGEMENTS IMPORTANTS !
 =================================
 
+2017-02-10
+----------
+
+**Minimiser le nombre de déplacements pour gagner :** proposition d'un algorithme programmable mais non utilisable par un humain.
+
+
 2017-02-04
 ----------
 

@@ -1,4 +1,22 @@
 ==========
+2017-02-11
+==========
+
+**Document "Baseball des couleurs":** fin de la version donnant le nombre minimal de coups pour résoudre une configuration.
+
+    1) *Document :* la section sur l'algorithme, non humain, pour obtenir la solution optimale est finie.
+
+    2) *Code :* le code pour produire dans le document les arbres des solutions optimales respecte maintenant les positions précédentes du trou.
+
+
+==========
+2017-02-08
+==========
+
+**Document "Baseball des couleurs":** ajout d'un nouveau fichier Python pour produire les versions ¨tikz des arbres obtenus en résolvant le jeu avec un nombre minimal de coups.
+
+
+==========
 2017-02-04
 ==========
 
@@ -6,4 +24,4 @@
 
     1) *Document :* le nombre de configurations était totalement faux. L'erreur a été détectée indirectement en testant le code présenté dans le point suivant. L'erreur très grossière a été corrigée ! Vive la mise en pratique ! Pour ¨info, il faut raisonner sur le nombre de couleurs disponibles et non sur les jetons restants !
 
-    2) *Code :* ajout d'un nouveau code qui trouve par "backtracking"  à partir de la position gagnante le chemin le plus court pour résoudre le jeu.
+    2) *Code :* ajout d'un nouveau code qui trouve à partir de la position gagnante le chemin le plus court pour résoudre le jeu.

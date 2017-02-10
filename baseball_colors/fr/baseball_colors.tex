@@ -19,27 +19,27 @@
 	\usepackage{tikz}
 	\usetikzlibrary{trees}
 
-% WATERMARK
-	\usepackage[printwatermark]{xwatermark}
+%% WATERMARK
+%	\usepackage[printwatermark]{xwatermark}
+%
+%
+%% DRAFT MODE !
+%	\newwatermark[%
+%		allpages,%
+%		color=red!20,%
+%		angle=45,%
+%		scale=1.1,%
+%		xpos=-10, ypos=30]{Z! - BROUILLON - TEXTE NON SÛR - Z!}
+%
+%	\newwatermark[%
+%		allpages,%
+%		color=red!20,%
+%		angle=45,%
+%		scale=1.1,%
+%		xpos=5, ypos=-5]{PRÉSENCE PROBABLE DE GROSSES ERREURS}
 
 
-% DRAFT MODE !
-	\newwatermark[%
-		allpages,%
-		color=red!20,%
-		angle=45,%
-		scale=1.1,%
-		xpos=-10, ypos=30]{Z! - BROUILLON - TEXTE NON SÛR - Z!}
-
-	\newwatermark[%
-		allpages,%
-		color=red!20,%
-		angle=45,%
-		scale=1.1,%
-		xpos=5, ypos=-5]{PRÉSENCE PROBABLE DE GROSSES ERREURS}
-
-
-% NEED TO BE READ BY OTHERS !
+%% NEED TO BE READ BY OTHERS !
 %	\newwatermark[%
 %		allpages,%
 %		color=red!20,%
@@ -57,67 +57,63 @@
 
 \begin{document}
 
-\hspace{1cm}
+\addtitle{%
+    title      = {Baseball des couleurs - Une petite étude théorique},
+    name       = {Christophe BAL},
+    mail       = {projetmbc@gmail.com},
+    version    = {Version du 2017-01-21},
+    addlicence = yes,
+%    repo       = {https://github.com/bc-writings-algo-general/algorithms_with_paper},
+%    repofolder = {fr}
+}
 
-\clearpage
+\vspace{3cm}
 
-%\addtitle{%
-%    title      = {Baseball des couleurs - Une petite étude théorique},
-%    name       = {Christophe BAL},
-%    mail       = {projetmbc@gmail.com},
-%    version    = {Version du 2017-01-21},
-%    addlicence = yes,
-%%    repo       = {https://github.com/bc-writings-algo-general/algorithms_with_paper},
-%%    repofolder = {fr}
-%}
-%
-%\vspace{3cm}
-%
-%\hrule
-%
-%\tableofcontents
-%
-%\vspace{4ex}
-%
-%\hrule
-%
-%\newpage
-%
-%
-%
-%\section{Origine du jeu}    % RELU. OK !
-%    \input{content/origin.tex}
-%
-%
-%\section{Les règles}    % RELU. OK !
-%    \input{content/rules.tex}
-%
-%
-%\section{Premier contact : la méthode \textit{\og une base à la fois \fg}}    % RELU. OK !
-%    \input{content/algo_selection.tex}
-%
-%
-%\section{Soyons opportuniste : la méthode \textit{\og on avance au mieux \fg}}    % RELU. OK !
-%    \input{content/algo_bubble.tex}
-%
-%
-%\section{À la recherche d'une solution optimale}
-%	\subsection{Où tentons-nous d'aller ?}    % RELU. OK !
-%    	\input{content/optimal/where_do_we_go.tex}
+\hrule
+
+\tableofcontents
+
+\vspace{4ex}
+
+\hrule
+
+\newpage
+
+
+
+\section{Origine du jeu}    % RELU. OK !
+    \input{content/origin.tex}
+
+
+\section{Les règles}    % RELU. OK !
+    \input{content/rules.tex}
+
+
+\section{Premier contact : la méthode \textit{\og une base à la fois \fg}}    % RELU. OK !
+    \input{content/algo_selection.tex}
+
+
+\section{Soyons opportuniste : la méthode \textit{\og on avance au mieux \fg}}    % RELU. OK !
+    \input{content/algo_bubble.tex}
+
+
+\section{À la recherche d'une solution optimale}
+	\subsection{Où tentons-nous d'aller ?}    % RELU. OK !
+    	\input{content/optimal/where_do_we_go.tex}
 %
 	\subsection{Un algorithme donnant toujours la solution optimale}
     	\input{content/optimal/tree_sol}    % RELU ? NON
 
+
+
+\clearpage
+
+\section{Annexe}
+	\subsection{Toutes les configurations pour un jeu à trois bases}    % RELU. OK !
+	    \input{content/annex/all_boards_3_bases.tex}
 %
-%
-%\clearpage
-%
-%\section{Annexe}
-%	\subsection{Toutes les configurations pour un jeu à trois bases}    % RELU. OK !
-%	    \input{content/annex/all_boards_3_bases.tex}
-%
-%
-%	\subsection{Calculer le nombre de configurations possibles}    % RELU. OK !
-%	    \input{content/annex/calculate_nb_config.tex}
-%
+
+	\subsection{Calculer le nombre de configurations possibles}    % RELU. OK !
+	    \input{content/annex/calculate_nb_config.tex}
+
 \end{document}

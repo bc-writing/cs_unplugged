@@ -1,59 +1,80 @@
-L'idée est toute simple à comprendre. On commence en partant de la configuration gagnante pour trouver toutes les nouvelles configurations obtenues en faisant un seul mouvement.
-À partir de ces nouvelles configurations, on en recherche d'autres nouvelles obtenues en faisant un second mouvement. Ceci peut se résumer par l'arbre ci-dessous où une configuration $\mathcal{C}_1$ est reliée à une autre $\mathcal{C}_2$ uniquement si l'on peut passer de $\mathcal{C}_1$ à $\mathcal{C}_2$ en un seul mouvement, et quand on descend dans l'arbre on ne garde que les nouvelles configurations.
+Nous allons exploiter une idée toute simple à comprendre. Partons de la configuration gagnante pour trouver toutes les configurations obtenues en faisant un seul mouvement.
+À partir des précédentes nouvelles configurations, nous recherchons ensuite d'autres configurations obtenues en faisant un second mouvement.
+Ceci peut se résumer par l'arbre ci-dessous où une configuration $\mathcal{C}_1$ est reliée à une autre $\mathcal{C}_2$ uniquement si l'on peut passer de $\mathcal{C}_1$ à $\mathcal{C}_2$ en un seul mouvement. De plus, quand on descend dans l'arbre on ne garde que les nouvelles configurations.
 
 \input{content/optimal/tree_sol/depthmax-3.tikz}
 
 
-Avec un mouvement de plus, nous avons l'arbre ci-dessous qui à gauche perd sa symétrie.
+Avec un mouvement de plus, nous avons l'arbre ci-dessous (qui n'est pas symétrique : voir en bas à gauche).
 
 \input{content/optimal/tree_sol/depthmax-4.tikz}
 
 
-Avec de la patience, ou grâce à un programme, on peut fabriquer l'arbre complet. Vous le trouverez en annexe. Notons que pour un jeu à cinq bases, il y a tout de même $11\,010$ configurations comme ceci est justifié dans l'annexe. Donc représenter l'arbre complet pour 5 bases sur une feuille A4, même avec l'aide d'un programme, ne sera pas possible. 
+Avec de la patience, ou grâce à un programme, on peut fabriquer l'arbre complet (vous le trouverez en annexe). Notons que pour un jeu à cinq bases, il y a tout de même $11\,010$ configurations (ceci est justifié en annexe), donc représenter l'arbre complet pour 5 bases sur une feuille A3, même avec l'aide d'un programme, ne sera pas possible. 
 
 
 \medskip
 
-????
-
-idée que l'on en peut pas faire mieux, et traductiona lgorithmqiue, qui est un préalable pour programmer cette méthod qui n'est pas utilisable par humain (sauf à utiliser une armée de servants)
+Il est évident que la méthode que nous employons va finir par trouver toutes les configurations tout en nous indiquant leur résolution en faisant le minimum de coups possible. 
 
 
-Voici l'algorithme qui va nous donner le moins possible de déplacements pour arriver à la configuration gagnante. Nous allons utiliser des dictionnaires qui sont des objets associant une valeur à une clé. Par exemple, $mon\_dico = \{"un": 1, "deux":2 \}$ admet pour clés $"un"$ et $"deux"$, et nous notons $mon\_dico\left["un"\right] = 1$ la valeur associée à la clé $"un"$.
+\medskip
+
+Notre démarche peut se traduire par l'algorithme ci-dessous où nous utilisons des dictionnaires qui sont des objets associant une valeur à une clé. Par exemple, \verb+mon_dico = {"un": 1, "deux": 2}+ admet pour clés \verb+"un"+ et \verb+"deux"+, et nous notons \verb+mon_dico<"un"> = 1+ la valeur associée à la clé \verb+"un"+.
+Nous utilisons aussi $[ \,\, ]$ pour indiquer une liste vide prête à être remplie.
+
 
 \bigskip
 
 \begin{algo}
-	\Data{?????  une configuration quelconque de début de jeu}
-	\Result{la solution gagnante en utilisant le moins possible de déplacements}
+	\Data{une configuration quelconque de début de jeu}
+	\Result{la solution gagnante (en utilisant le moins de déplacements possible)}
 	\vspace{0.4em}
     \Begin{
-		\vspace{0.4em}
-		\tcp{Construction de toutes les configurations tout en gardant en mémoire le moins possible}
-		\tcp{de déplacements pour accéder à chaque nouvelle  configuration construite.}
-		???
-		\\
 		\vspace{0.4em}
 		$\cal G$ désigne la configuration gagnante.
 		\\
 		\vspace{0.4em}
-		\While{la configuration contient un jeton qui n'est pas dans sa base}{
+		\tcp{"L'arbre" sera construit sous forme d'un dictionnaire.}
+		\tcp{\quad \textbullet{} les clés sont les configurations possibles.}
+		\tcp{\quad \textbullet{} chaque valeur donne la liste des configurations à suivre pour gagner}
+		\tcp{\phantom{\quad \textbullet{}} le plus rapidement possible (lecture de la liste de gauche à droite).}
+		$\mathcal{A} \leftarrow \{ \mathcal{G} : [ \,\, ] \}$ 
+		\\
+		\vspace{0.4em}
+		\tcp{Liste stockant les [n]ouvelles [c]onfigurations d'où partir.}
+		$NC \leftarrow \big[ \, \mathcal{G} \, \big]$
+		\\
+		\vspace{0.4em}
+		\While{$NC$ n'est pas vide}{
 			\vspace{0.4em}
-			???
+			$NC_{ap} \leftarrow [ \,\, ]$ va stocker les configurations d'où partir durant l'étape d'après.
+			\\
+			\vspace{0.4em}
+			\ForEach{configuration $\mathcal{C}$ dans $NC$}{
+				\ForEach{configuration $\mathcal{V}$ obtenue en un seul mouvement depuis $\mathcal{C}$}{
+					\If{$\mathcal{V}$ n'est pas une clé de $\cal A$}{
+						\vspace{0.4em}
+						Ajouter $\mathcal{V}$ à $NC_{ap}$.
+						\\
+						\vspace{0.4em}
+						$COUPS$ : liste obtenue en ajoutant $\mathcal{C}$ à gauche de la liste $\mathcal{A} \big\langle \mathcal{C} \big\rangle$.
+						\\
+						Ajouter $\mathcal{V}$ à $\mathcal{A}$ avec $\mathcal{A} \big\langle \mathcal{V} \big\rangle = COUPS$.
+					}
+				}
+			}
+			\vspace{0.4em}
+			$NC \leftarrow NC_{ap}$
 		}
 		\vspace{0.4em}
-		\tcp{????}
+		\tcp{Utilisation de l'arbre pour résoudre le jeu.}
+		\vspace{0.4em}
+		$\mathcal{C}_0$ : la configuration à résoudre.
+		\\
+		Obtenir successivement les configurations stockées de gauche à droite dans $\mathcal{A} \big\langle \mathcal{C}_0 \big\rangle$.
     }
 \end{algo}
 
 
-\bigskip
-
-Les instructions étant sans ambiguïté, nous allons pouvoir nous attaquer très sérieusement à la validation des propriétés de \quote{finitude} et de \quote{résolution}.
-
-\begin{proof}
-	????????????????????
-\end{proof}
-
-
-\paragraph{Remarque :} ????
+\paragraph{Remarque :} \hspace{-1em} l'algorithme présenté dans cette section est facile à programmer mais il devient inutilisable par un humain dès le jeu à quatre bases qui permet d'avoir $480$ configurations différentes (voir l'annexe pour le calcul de cette valeur).

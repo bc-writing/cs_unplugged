@@ -1,4 +1,5 @@
 from collections import OrderedDict
+from copy import copy
 from pathlib import Path
 import random
 
@@ -19,16 +20,42 @@ solver.size = len(gameboard)
 solver.build_tree()
 
 
-# All the gameboards.
+# All the gameboards with good positions !
+allgameboards = solver.allgameboards
+themoves      = solver.moves
 
-for board_id, board in enumerate(solver.allgameboards):
+depth    = 0
+gotonext = True
+
+while(gotonext):
+    depth   += 1
+    gotonext = False
+
+    for board_id, parents in themoves.items():
+        if len(parents) == depth:
+            gotonext = True
+
+            solver.lastgameboard = copy(allgameboards[parents[0]])
+            solver.nextgameboard = copy(allgameboards[board_id])
+
+            allgameboards[board_id] = copy(solver.usergameboard())
+            print(allgameboards[board_id])
+
+
+# Let's build the pictures.
+for board_id, board in enumerate(allgameboards):
     drawer.draw(
-        gameboard = solver.allgameboards[board_id],
+        gameboard = allgameboards[board_id],
         filepath  = folder / "moves/{0}.png".format(board_id),
         radius    = 5
     )
 
-# The tree of the solutions.
+exit()
+
+
+
+# LaTeX output.
+
 def update_tree(parents, onedict):
     oldest = parents[0]
     childs = parents[1:]
@@ -56,7 +83,7 @@ for board_id, parents in solver.moves.items():
         tree_of_sol = update_tree(parents, tree_of_sol)
 
 
-# LaTeX output of the th first two levels of the tree of the solutions.
+# TiKz.
 
 tikztemplate = r"""
 \begin<<center>>

@@ -2,19 +2,26 @@
 TODO
 ====
 
+# mogrify -trim *.png
+# mogrify -mattecolor white -frame 10x10 *.png
+# mogrify -bordercolor none -border 10 *.png
+
 
 > ----------------- <
 
 CODE::
-    square
-        ---> en ligne mais avec des carrés
+    arbre coût minimal : passage d'un niveau au siuvant qui respecte la configuration précédente (comme dans usergameboard mais faire sol adapté)
+
+    Solution optimale ??????
+        ----> ne se déplacer que là il y a du nouveau à faire !!!
+        ----> bien entendu s'autoirse rà tourner (déplacement modulo la longuer de la liste)
+        ---->   RÉSUMÉ : choisir le mouvement qui va faire diminuer le nombre associé et si pas possivble directement aller à la position la plus proche permettant de faire diminuer le nombre
 
 
-    > ----------------- <
+> ----------------- <
 
-CODE::
-    ascii : mode couleur + mise ne valeur des pions bougé via bold
-            via bibliotèque
+DOC::
+    arbre coût minimal : étudier via un code le comprtement des listes voir si on peut en déduire une méthode simple à expliqure (mais peut-être dur à faire mais on s'ne fiche)
 
 
 > ----------------- <
@@ -40,29 +47,8 @@ THÉORIE avant optimalité - tests concrets ::
 
 > ----------------- <
 
-THÉORIE::
-    Problème de la recherche d'une éventuelle solution optimale. Faisable ?
-    pour n=5, on a 63000 config donc on crée un prog qui pour chaque config trouve brutalement la résolution la plus rapide
-        ---> pour cela, on part de la position gagnante, puis onc cherche les config à un déplacement qui s'en désuisent
-        ---> ensuite on fait de meêl avec ce nouvel ensemble en ne gradant que les nouvelles configs qui permettent de gagner en deux coups
-        ---> ... etc
-
-    Obtient-on un truc générale humainement intelligible ????
-
-
-> ----------------- <
-
-# mogrify -trim *.png
-# mogrify -mattecolor white -frame 10x10 *.png
-# mogrify -bordercolor none -border 10 *.png
-
-
-> ----------------- <
-
 CODE::
     revoir la couleur noir , ajouter du alpha pour obtenir un truc bien diéférentiable entre belu foncé et noir !!!!
-
-    motof pour les daltoniens
 
     version noir et blanc numéroté via
         ---> J1 pour joueur ou jeton 1
@@ -133,21 +119,3 @@ Solving [X, 0, 2, 2, 1, 1, 3, 3, 4, 4]
    ---> [1, 0, 1, 2, 2, X, 3, 3, 4, 4]    INUTILE !
    ---> [1, 0, 1, X, 2, 2, 3, 3, 4, 4]
    ---> [X, 0, 1, 1, 2, 2, 3, 3, 4, 4]
-
-Solution optimale (à démontrer)
-    ----> ne se déplacer que là il y a du nouveau à faire !!!
-    ----> bien entendu s'autoirse rà tourner (déplacement modulo la longuer de la liste)
-    ---->   RÉSUMÉ : choisir le mouvement qui va faire diminuer le nombre associé et si pas possivble directement aller à la position la plus proche permettant de faire diminuer le nombre
-
-
-    > ----------------- <
-
-    snake     UTILE ?????
-        ---> des carrées alignées avec retour à la ligne
-    1 ---> 2 ---> 3 ---> 4
-                         |
-                         ^
-    8 <--- 7 <--- 6 <--- 5
-    |
-    ^
-    9 ---> ...

@@ -142,7 +142,7 @@ This gives the shortest paths !
                 self.lastgameboard[hpos], self.lastgameboard[opos] \
                 = self.nextgameboard[opos], self.nextgameboard[hpos]
 
-        yield self.lastgameboard
+        return self.lastgameboard
 
 
     def solve(self, gameboard):
@@ -162,4 +162,4 @@ This gives the shortest paths !
         for oneid in self.moves[gameboard_id]:
             self.nextgameboard = self.allgameboards[oneid]
 
-            yield from self.usergameboard()
+            yield self.usergameboard()
