@@ -10,12 +10,16 @@ TODO
 > ----------------- <
 
 CODE::
-    arbre coût minimal : passage d'un niveau au siuvant qui respecte la configuration précédente (comme dans usergameboard mais faire sol adapté)
-
     Solution optimale ??????
         ----> ne se déplacer que là il y a du nouveau à faire !!!
         ----> bien entendu s'autoirse rà tourner (déplacement modulo la longuer de la liste)
         ---->   RÉSUMÉ : choisir le mouvement qui va faire diminuer le nombre associé et si pas possivble directement aller à la position la plus proche permettant de faire diminuer le nombre
+
+        OU
+
+        ---> minimiser liste
+        ---> si u-impossible, bouger le pion que l'on peut rapprocher le plus
+        ---> le coder et cimparer avec nbre de coût uen sol optimale
 
 
 > ----------------- <

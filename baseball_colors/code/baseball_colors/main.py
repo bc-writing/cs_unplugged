@@ -1,8 +1,11 @@
 from pathlib import Path
 
+colors = None
+colors = "kry"
+
 algoname = "onebase"
 # algoname = "heat"
-# algoname = "treesol"
+algoname = "treesol"
 
 output   = "asciiart"
 output   = "picture"
@@ -49,12 +52,15 @@ random.shuffle(gameboard)
 # bactrack >> heat > onebase
 gameboard = [3, 3, 2, 4, 1, 4, 0, 1, 2, None]
 
-gameboard = [4, 4, None, 0, 1, 1, 2, 2, 3, 3]
+gameboard = [1, 0, 1, None, 2, 2]
 
 import importlib
 
 solve  = importlib.import_module('solve.{0}'.format(algoname))
 output = importlib.import_module('plot.{0}'.format(output))
+
+if colors:
+    output.COLORS = colors
 
 print("Gameboard :", gameboard)
 

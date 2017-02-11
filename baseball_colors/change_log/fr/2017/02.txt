@@ -1,4 +1,11 @@
 ==========
+2017-02-12
+==========
+
+**Document "Baseball des couleurs":** ajout d'un exemple pour clarifier le fait que la solution proposée par l'algorithme "tout connaître pour avancer vite" donne une solution mais pas forcément la seule possible.
+
+
+==========
 2017-02-11
 ==========
 

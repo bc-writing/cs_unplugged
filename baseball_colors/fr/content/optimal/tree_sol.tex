@@ -15,7 +15,8 @@ Avec de la patience, ou grâce à un programme, on peut fabriquer l'arbre comple
 
 \medskip
 
-Il est évident que la méthode que nous employons va finir par trouver toutes les configurations tout en nous indiquant leur résolution en faisant le minimum de coups possible. 
+Il est évident que la méthode que nous employons va finir par trouver toutes les configurations tout en nous indiquant une résolution proposant un minimum de coups à faire.
+Il faut prendre garde que rien ne nous indique qu'il n'y a qu'une seule façon optimale de résoudre une configuration. En fait, il n'y a pas toujours unicité comme le montre la remarque n°1 juste après l'algorithme. 
 
 
 \medskip
@@ -77,4 +78,41 @@ Nous utilisons aussi $[ \,\, ]$ pour indiquer une liste vide prête à être rem
 \end{algo}
 
 
-\paragraph{Remarque :} \hspace{-1em} l'algorithme présenté dans cette section est facile à programmer mais il devient inutilisable par un humain dès le jeu à quatre bases qui permet d'avoir $480$ configurations différentes (voir l'annexe pour le calcul de cette valeur).
+\medskip
+
+\paragraph{Remarque n°1 :} \hspace{-1em} comme l'arbre construit  par l'algorithme \quote{tout connaître pour avancer vite} dépend de l'ordre dans lequel on explore les nouvelles possibilités, il y a peu de chances que l'on ait une solution optimale unique pour chaque configuration. L'exemple suivant montre qu'effectivement il n'y a pas unicité.
+
+\vspace{-0.4em}
+\begin{multicols}{2}
+	\begin{center}   % [None, 0, 1, 2, 1, 2]
+		\includegraphics[scale=0.25]{content/optimal/tree_sol/no_unicity/sol_1/000.png}
+
+		\includegraphics[scale=0.25]{content/optimal/tree_sol/no_unicity/sol_1/001.png}
+
+		\includegraphics[scale=0.25]{content/optimal/tree_sol/no_unicity/sol_1/002.png}
+
+		\includegraphics[scale=0.25]{content/optimal/tree_sol/no_unicity/sol_1/003.png}
+	\end{center}
+
+	\columnbreak
+	\begin{center}   % SAME START
+		\includegraphics[scale=0.25]{content/optimal/tree_sol/no_unicity/sol_1/000.png}
+
+				     % [1, 0, 1, 2, None, 2]
+		\includegraphics[scale=0.25]{content/optimal/tree_sol/no_unicity/sol_2/001.png}
+
+				     % [1, 0, 1, None, 2, 2]
+		\includegraphics[scale=0.25]{content/optimal/tree_sol/no_unicity/sol_2/002.png}
+
+				     % SAME END
+		\includegraphics[scale=0.25]{content/optimal/tree_sol/no_unicity/sol_1/003.png}
+	\end{center}
+\end{multicols}
+
+Ceci étant noté, si l'on visualise le jeu en cercle, et non plus en ligne, les deux solutions précédentes sont équivalentes puisque sur chaque ligne, la configuration de gauche et celle de droite sont dans le cercle symétriques par rapport à la base noire.
+Autrement dit, la colonne de droite est obtenue à partir de celle de gauche en échangeant les couleurs rouges et jaunes, et aussi l'ordre des deux bases rouges et jaunes (ce qui est autorisé puisque l'on choisit un sens de parcours pour \quote{aplatir} le cercle).
+
+\paragraph{Remarque n°2 :} \hspace{-1em} si l'on considère l'exemple donné dans la section précédente \quote{Où tentons-nous d'aller ?}, la méthode \quote{tout connaître pour avancer vite} propose exactement les 9 coups proposés pour illustrer certaines maladresses de l'algorithme \quote{on avance au mieux}
+
+
+\paragraph{Remarque n°3 :} \hspace{-1em} l'algorithme \quote{tout connaître pour avancer vite}, bien que facile à programmer, est inutilisable par un humain dès le jeu à quatre bases qui permet d'avoir $480$ configurations différentes (voir l'annexe pour le calcul de cette valeur).
